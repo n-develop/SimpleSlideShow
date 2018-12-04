@@ -9,6 +9,7 @@ using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using SimpleSlideShow.Services;
 
 namespace SimpleSlideShow
 {
@@ -31,8 +32,9 @@ namespace SimpleSlideShow
                 options.MinimumSameSitePolicy = SameSiteMode.None;
             });
 
-
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
+
+            services.AddScoped<ISlideShowService, SlideShowService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
