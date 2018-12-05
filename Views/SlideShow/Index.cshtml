@@ -4,13 +4,13 @@
     ViewData["Title"] = Model.Title;
 }
 
-<div id="carousel" class="section" style="max-width:100%">
+<div id="carousel" class="carousel">
     @foreach (var slide in Model.Images)
     {
-        <div class="slide" style="">
-            <img class="slide-img @slide.Animation" src="@slide.Image" style="width:100%">
+        <div class="slide">
+            <img class="slide-img @slide.Animation" src="@slide.Image">
             @if (!string.IsNullOrEmpty(slide.Caption)) {
-                <div class="display-bottommiddle large-text  padding-16 black">
+                <div class="caption">
                     @slide.Caption
                 </div>    
             }
