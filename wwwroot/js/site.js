@@ -1,21 +1,33 @@
-﻿var images = [];
+﻿var currentSlide = 0;
+var lastUpdated = new Date(2000, 0, 1);
+carousel();
 
-$(function () {
-    setInterval(nextImages, 10000);
-});
+function carousel() {
+    nextImages();
+
+    var slides = document.getElementsByClassName("slide");
+    for (var i = 0; i < slides.length; i++) {
+        slides[i].style.display = "none";
+    }
+    currentSlide++;
+    if (currentSlide > slides.length) {
+        currentSlide = 1
+    }
+    slides[currentSlide - 1].style.display = "block";
+    setTimeout(carousel, 4000);
+}
 
 function nextImages() {
-    $.ajax("/SlideShow/Next").done(function(data) {
-        data.forEach(element => {
-            if (!images.includes(element)) {
-                images.unshift(element);
+    fetch('/SlideShow/Next?date=' + lastUpdated.toISOString())
+        .then(function(response) {
+            return response.text();
+        })
+        .then(function(data) {
+            if (data.trim().length > 0) {
+                lastUpdated = new Date();
+                var carouselDiv = document.getElementById("carousel");
+                carouselDiv.insertAdjacentHTML('beforeend', data);
             }
+
         });
-        
-        if (images.length > 0) {
-            var first = images.shift();
-            document.getElementById("img-container").style.backgroundImage = "url('".concat(first).concat("')");
-            images.push(first);
-        }
-    });
 }

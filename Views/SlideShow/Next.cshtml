@@ -1,0 +1,16 @@
+@model List<Slide>
+@{
+    Layout = null;
+}
+
+@foreach (var slide in Model)
+{
+    <div class="slide @slide.Animation" style="display: none;">
+        <img class="slide-img" src="@slide.Image" style="width:100%">
+        @if (!string.IsNullOrEmpty(slide.Caption)) {
+            <div class="display-bottommiddle large-text  padding-16 black">
+                @slide.Caption
+            </div>
+        }
+    </div>
+}

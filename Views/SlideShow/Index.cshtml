@@ -1,8 +1,19 @@
-@model IndexPage
+@model CarouselPage
 
 @{
     ViewData["Title"] = Model.Title;
 }
 
-<div id="img-container" class="img-container">
+<div id="carousel" class="section" style="max-width:100%">
+    @foreach (var slide in Model.Images)
+    {
+        <div class="slide" style="">
+            <img class="slide-img @slide.Animation" src="@slide.Image" style="width:100%">
+            @if (!string.IsNullOrEmpty(slide.Caption)) {
+                <div class="display-bottommiddle large-text  padding-16 black">
+                    @slide.Caption
+                </div>    
+            }
+        </div>
+    }
 </div>

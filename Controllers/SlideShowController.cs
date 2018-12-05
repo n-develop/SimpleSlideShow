@@ -22,7 +22,7 @@ namespace SimpleSlideShow.Controllers
             _slideShowService = slideShowService;
         }
 
-        public IActionResult Carousel()
+        public IActionResult Index()
         {
             var model = new CarouselPage();
             model.Title = _configuration.GetValue("PageTitle", "SimpleSlideShow");
@@ -30,17 +30,10 @@ namespace SimpleSlideShow.Controllers
             return View(model);
         }
 
-        public IActionResult Index()
-        {
-            var model = new IndexPage();
-            model.Title = _configuration.GetValue("PageTitle", "SimpleSlideShow");
-            return View(model);
-        }
-
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
-        public IActionResult Next()
+        public IActionResult Next(DateTime date)
         {
-            return Json(_slideShowService.GetNextImages(DateTime.MinValue));
+            return View(_slideShowService.GetNextImages(date));
         }
 
 
