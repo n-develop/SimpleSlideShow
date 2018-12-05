@@ -1,5 +1,5 @@
 ﻿var currentSlide = 0;
-var lastUpdated = new Date(2000, 0, 1);
+var lastUpdated = new Date();
 carousel();
 
 function carousel() {
