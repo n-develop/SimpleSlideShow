@@ -15,13 +15,13 @@ body {
 
 .slide {
     max-height: 100vh;
-    overflow: hidden;
 }
 
 .slide-img {
     max-height: 100vh;
     width: 100%;
     object-fit: contain;
+    display: block;
 }
 .caption {
     color: #fff;
