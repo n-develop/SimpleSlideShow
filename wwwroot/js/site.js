@@ -14,7 +14,7 @@ function carousel() {
         currentSlide = 1
     }
     slides[currentSlide - 1].style.display = "block";
-    setTimeout(carousel, 4000);
+    setTimeout(carousel, 5000);
 }
 
 function nextImages() {
